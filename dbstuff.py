@@ -1,5 +1,6 @@
 import psycopg2
 import datetime
+import os
 
 db_password = os.environ.get('POSTGRES_PASSWORD')
 
