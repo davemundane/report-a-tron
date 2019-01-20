@@ -1,7 +1,5 @@
 FROM ubuntu:16.04
 
-MAINTANER Your Name "davemundane@mailinator.com"
-
 RUN apt-get update -y && \
     apt-get install -y python3 python3-dev python3-pip
 
