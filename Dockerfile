@@ -11,6 +11,8 @@ RUN pip3 install -r requirements.txt
 
 COPY . /app
 
+RUN python3 setupdb.py
+
 ENTRYPOINT [ "python3" ]
 
 CMD [ "report-server.py" ]
