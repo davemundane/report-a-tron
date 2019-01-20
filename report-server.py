@@ -1,13 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
-import csv
 import random
 import json
 import datetime
-import base64
 import requests
-import re
 import markdown
-import checky
 import configparser
 import dbstuff
 import reportWriter
