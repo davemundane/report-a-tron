@@ -3,3 +3,4 @@ datetime
 flask
 requests
 configparser
+psycopg2==2.7.5 --no-binary psycopg2
