@@ -1,0 +1,56 @@
+{% extends "template.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="static/buttons.css">
+<link rel="stylesheet" type="text/css" href="static/tables.css">
+<link rel="stylesheet" type="text/css" href="static/forms.css">
+  <table class="tablea">
+  {% if assetName %}
+    <caption>{{ assetName }}</caption>
+	{% else %}
+	<caption><caption>
+	{% endif %}
+    <thead>
+      <tr>
+        <th scope="col">Issue ID</th>
+        <th scope="col">Issue Title</th>
+        <th scope="col">Issue Location</th>
+		<th scope="col">Description</th>
+		<th scope="col">Remediation</th>
+		<th scope="col">Risk Rating</th>
+		<th scope="col">Created On</th>
+		<th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+	{% for row in data %}
+      <tr>
+        <td scope="row" data-title="issueID">{{row[0]}}</td>
+        <td data-title="issueTitle">{{row[4]}}</td>
+        <td data-title="vulnLocation">{{row[5]}}</td>
+		<td data-title="description">{{row[6]}}</td>
+		<td data-title="remediation">{{row[7]}}</td>
+		<td data-title="riskRating">{{row[8]}}</td>
+		<td data-title="createdOn">{{row[11]}}</td>
+		<td data-title="status">{{row[12]}}</td>
+      </tr>
+	  {% endfor %}
+    </tbody>
+  </table>
+  <div class="forms">
+<form class="entry_form" action="/updatesingleissue" method="post">
+<input type="hidden" name="issueID" id="issueID" value="{{ issueID }}">
+<input type="hidden" name="assetID" id="assetID" value="{{ assetID }}">
+<label for="status" class="select_menu">Status
+<select name="status" id="status">
+<option selected value="base"></option>
+<option value="Open">Open</option>
+<option value="Risk Accepted">Risk Accepted</option>
+<option value="Closed">Closed</option>
+</select>
+</label>
+<div class="button_frame">
+<button class="push_button_big blue" type="submit">Submit Data</button>
+</div>
+</form>
+</div>
+{% endblock %}

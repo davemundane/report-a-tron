@@ -1,0 +1,31 @@
+{% extends "template.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="static/forms.css">
+<link rel="stylesheet" type="text/css" href="static/buttons.css">
+<p class="form_caption">{{ assetName }}</p>
+<div class="forms">
+<form class="entry_form" action="/writeadhocreport" method="post">
+<label for="reportType" class="reportType">Report Type
+<select name="reportType" id="reportType">
+<option selected value="base"></option>
+<option value="testReport">Test Report</option>
+<option value="engagementReport">Engagement Report</option>
+<option value="assetReport">Asset Report</option>
+</select>
+</label>
+<div class="checkbox">
+<input id="issuesOpen" type="checkbox" name="issuesOpen">
+<label for="issuesOpen">Open</label>
+<input id="issuesClosed" type="checkbox" name="issuesClosed">
+<label for="issuesClosed">Closed</label>
+<input id="issuesRA" type="checkbox" name="issuesRA">
+<label for="issuesRA">Risk Accepted</label>
+</div>
+<label for="assetName">Asset Name</label>
+<input type="text" name="assetName" id="assetName" required>
+<div class="button_frame">
+<button class="push_button_big blue" type="submit">Write Report</button>
+</div>
+</form>
+</div>
+{% endblock %}

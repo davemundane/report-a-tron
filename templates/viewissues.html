@@ -1,0 +1,36 @@
+{% extends "template.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="static/buttons.css">
+<link rel="stylesheet" type="text/css" href="static/tables.css">
+  <table class="tablea">
+    <caption>{% if assetName %}{{ assetName }}{% else %}Issue Data{% endif %}</caption>
+    <thead>
+      <tr>
+		<th scope="col">Asset Name</th>
+        <th scope="col">Issue Title</th>
+        <th scope="col">Issue Location</th>
+		<th scope="col">Description</th>
+		<th scope="col">Remediation</th>
+		<th scope="col">Risk Rating</th>
+		<th scope="col">Created On</th>
+		<th scope="col">Status</th>
+		<th scope="col">Update</th>
+      </tr>
+    </thead>
+    <tbody>
+	{% for row in data %}
+      <tr>
+		<td scope="row" data-title="assetName">{{row[18]}}</td>
+        <td data-title="issueTitle">{{row[4]}}</td>
+        <td data-title="vulnLocation">{{row[5]}}</td>
+		<td data-title="description">{{row[6]}}</td>
+		<td data-title="remediation">{{row[7]}}</td>
+		<td data-title="riskRating">{{row[8]}}</td>
+		<td data-title="createdOn">{{row[11]}}</td>
+		<td data-title="status">{{row[12]}}</td>
+		<td data-title="updateIssue"><a class="push_button darkblue fa-update" href="{{ url_for('updateissue', issueID=row[0], assetID=row[19]) }}"></a></td>
+      </tr>
+	  {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

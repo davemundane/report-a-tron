@@ -1,0 +1,36 @@
+{% extends "template.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="static/buttons.css">
+<link rel="stylesheet" type="text/css" href="static/tables.css">
+  <table class="tablea">
+    <caption>Asset Data</caption>
+    <thead>
+      <tr>
+        <th scope="col">Asset ID</th>
+        <th scope="col">Asset Name</th>
+		<th scope="col">Asset Type</th>
+        <th scope="col">Asset Owner</th>
+        <th scope="col">Created On</th>
+		<th scope="col">Eng Info</th>
+		<th scope="col">Test Info</th>
+		<th scope="col">Issue Info</th>
+		<th scope="col">New Eng</th>
+      </tr>
+    </thead>
+    <tbody>
+	{% for row in data %}
+      <tr>
+        <td scope="row" data-title="assetID">{{row[0]}}</td>
+        <td data-title="assetName">{{row[1]}}</td>
+		<td data-title="assetType">{{row[2]}}</td>
+        <td data-title="assetOwner">{{row[3]}}</td>
+        <td data-title="createdOn">{{row[4]}}</td>
+		<td data-title="engInfo"><a class="push_button darkblue fa-eye" href="{{ url_for('viewengagements', assetID=row[0], assetName=row[1]) }}"></a></td>
+		<td data-title="viewTest"><a class="push_button darkblue fa-eye" href="{{ url_for('viewtests', assetID=row[0], assetName=row[1]) }}"></a></td>
+		<td data-title="issueInfo"><a class="push_button darkblue fa-eye" href="{{ url_for('viewissues', assetID=row[0], assetName=row[1]) }}"></a></td>
+		<td data-title="newEng"><a class="push_button darkblue fa-plus" href="{{ url_for('engagements', assetName=row[1], assetID=row[0]) }}"></a></td>
+      </tr>
+	  {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

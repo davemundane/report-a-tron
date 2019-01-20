@@ -1,0 +1,41 @@
+{% extends "template.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="static/forms.css">
+<link rel="stylesheet" type="text/css" href="static/buttons.css">
+<div class="forms">
+<form class="entry_form" action="/createissue" method="post">
+<label for="issueTitle">Issue Title</label>
+<input type="text" name="issueTitle" id="issueTitle" required autofocus>
+<label for="riskRating">Risk Rating</label>
+<input type="text" name="riskRating" id="riskRating" required>
+<label for="riskImpact">Impact</label>
+<input type="text" name="riskImpact" id="riskImpact" required>
+<label for="riskLikelihood">Likelihood</label>
+<input type="text" name="riskLikelihood" id="riskLikelihood" required>
+<label for="issueDescription">Issue Description</label>
+<textarea type="text" name="issueDescription" id="issueDescription" required></textarea>
+<label for="remediation">Remediation</label>
+<textarea type="text" name="remediation" id="remediation" required></textarea>
+<label for="issueLocation">Issue Location</label>
+<input type="text" name="issueLocation" id="issueLocation" required>
+<label for="status" class="status">Status
+<select name="status" id="status">
+<option selected value="base"></option>
+<option value="Open">Open</option>
+<option value="Risk Accepted">Risk Accepted</option>
+<option value="Closed">Closed</option>
+</select>
+</label>
+<label for="issueNotes">Issue Notes</label>
+<textarea type="text" name="issueNotes" id="issueNotes"></textarea>
+<label for="appendix">Issue details</label>
+<textarea type="text" name="appendix" id="appendix"></textarea>
+<input type="hidden" name="assetID" id="assetID" value="{{ assetID }}">
+<input type="hidden" name="engID" id="engID" value="{{ engID }}">
+<input type="hidden" name="testID" id="testID" value="{{ testID }}">
+<div class="button_frame">
+<button class="push_button_big blue" type="submit">Log Another</button>
+</div>
+</form>
+</div>
+{% endblock %}

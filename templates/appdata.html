@@ -1,0 +1,28 @@
+{% extends "template.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="static/buttons.css">
+<link rel="stylesheet" type="text/css" href="static/tables.css">
+  <table class="tablea">
+    <caption>{{data[1]}}</caption>
+    <thead>
+      <tr>
+        <th scope="col">Asset ID</th>
+		<th scope="col">Asset Name</th>
+		<th scope="col">Asset Type</th>
+		<th scope="col">Asset Owner</th>
+		<th scope="col">Created On</th>
+      </tr>
+    </thead>
+    <tbody>
+	{% for row in data %}
+      <tr>
+        <td scope="row" data-title="assetID">{{row[0]}}</td>
+        <td data-title="assetName">{{row[1]}}</td>
+		<td data-title="assetType">{{row[2]}}</td>
+        <td data-title="assetOwner">{{row[3]}}</td>
+        <td data-title="createdOn">{{row[4]}}</td>
+      </tr>
+	  {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
