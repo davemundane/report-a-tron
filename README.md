@@ -14,7 +14,9 @@ Write reports for tests etc
 Clone the repo
 
 Recommended python 3.6+
+
 Works best in a virtualenv or venv 
+
 Use pip to install the requirements
 ```
 pip install -r requirements.txt
@@ -49,13 +51,19 @@ Built with flask, so you can edit the setup to run it somewhere other than local
 ## To do
 
 Setup config files for flask and postgresql
+
 Complete Asset reporting 
+
 Provide some more generic reporting stuff
+
 Make search work
+
 Redo the whole dbstuff library so its not rubbish
 
 ### Maybe
 
 Add JIRA integration
+
 Other report output (json, csv etc) 
+
 Do a NoSQL option
