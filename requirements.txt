@@ -1,6 +1,5 @@
 markdown
 datetime
-psycopg2
 flask
 requests
 configparser
