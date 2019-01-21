@@ -3,6 +3,8 @@ from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import os
 
 db_password = os.environ.get('POSTGRES_PASSWORD')
+print(db_password)
+print(type(db_password))
 
 def createTheDatabase():
 
