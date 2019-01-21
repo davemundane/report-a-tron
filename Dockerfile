@@ -7,6 +7,8 @@ COPY ./requirements.txt /app/requirements.txt
 
 WORKDIR /app
 
+ENV POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+
 RUN pip3 install -r requirements.txt
 
 COPY . /app
