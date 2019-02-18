@@ -7,11 +7,14 @@
     <thead>
       <tr>
 		<th scope="col">Asset Name</th>
+		<th scope="col">EngID</th>
         <th scope="col">Engagement Form Location</th>
         <th scope="col">Main Contact</th>
 		<th scope="col">Risk Rating</th>
 		<th scope="col">Received On</th>
 		<th scope="col">Action Taken</th>
+		<th scope="col">Status</th>
+		<th scope="col">Update Eng</th>
 		<th scope="col">View Tests</th>
 		<th scope="col">New Test</th>
       </tr>
@@ -20,13 +23,16 @@
 	{% for row in data %}
       <tr>
 		<td scope="row" data-title="assetName">{{row[8]}}</td>
-        <td data-title="engformLocation">{{row[2]}}</td>
-        <td data-title="mainContact">{{row[3]}}</td>
-		<td data-title="riskRating">{{row[4]}}</td>
-		<td data-title="receivedOn">{{row[5]}}</td>
-		<td data-title="actionTaken">{{row[6]}}</td>
-		<td data-title="viewTest"><a class="push_button darkblue fa-eye" href="{{ url_for('viewtests', assetID=row[1], engID=row[0], assetName=row[8]) }}"></a></td>
-		<td data-title="newTest"><a class="push_button darkblue fa-plus" href="{{ url_for('newtest', assetID=row[1], engID=row[0]) }}"></a></td>
+		<td data-title="endID">{{row[0]}}</td>
+        <td data-title="engformLocation">{{row[1]}}</td>
+        <td data-title="mainContact">{{row[2]}}</td>
+		<td data-title="riskRating">{{row[3]}}</td>
+		<td data-title="receivedOn">{{row[4]}}</td>
+		<td data-title="actionTaken">{{row[5]}}</td>
+		<td data-title="engStatus">{{row[7]}}</td>
+		<td data-title="updateEng"><a class="push_button darkblue" href="{{ url_for('updateEng', engID=row[0]) }}">#</a></td>
+		<td data-title="viewTest"><a class="push_button darkblue" href="{{ url_for('viewtests', assetID=row[9], engID=row[0], assetName=row[8]) }}">%</a></td>
+		<td data-title="newTest"><a class="push_button darkblue" href="{{ url_for('newtest', assetID=row[9], engID=row[0]) }}">+</a></td>
       </tr>
 	  {% endfor %}
     </tbody>

@@ -3,54 +3,43 @@
 <link rel="stylesheet" type="text/css" href="static/buttons.css">
 <link rel="stylesheet" type="text/css" href="static/tables.css">
 <link rel="stylesheet" type="text/css" href="static/forms.css">
-  <table class="tablea">
-  {% if assetName %}
-    <caption>{{ assetName }}</caption>
-	{% else %}
-	<caption><caption>
-	{% endif %}
-    <thead>
-      <tr>
-        <th scope="col">Issue ID</th>
-        <th scope="col">Issue Title</th>
-        <th scope="col">Issue Location</th>
-		<th scope="col">Description</th>
-		<th scope="col">Remediation</th>
-		<th scope="col">Risk Rating</th>
-		<th scope="col">Created On</th>
-		<th scope="col">Status</th>
-      </tr>
-    </thead>
-    <tbody>
-	{% for row in data %}
-      <tr>
-        <td scope="row" data-title="issueID">{{row[0]}}</td>
-        <td data-title="issueTitle">{{row[4]}}</td>
-        <td data-title="vulnLocation">{{row[5]}}</td>
-		<td data-title="description">{{row[6]}}</td>
-		<td data-title="remediation">{{row[7]}}</td>
-		<td data-title="riskRating">{{row[8]}}</td>
-		<td data-title="createdOn">{{row[11]}}</td>
-		<td data-title="status">{{row[12]}}</td>
-      </tr>
-	  {% endfor %}
-    </tbody>
-  </table>
-  <div class="forms">
+{% for row in data %}
+<p class="form_caption">Update Issue - ID: {{row[0]}}</p>
+<div class="forms">
 <form class="entry_form" action="/updatesingleissue" method="post">
-<input type="hidden" name="issueID" id="issueID" value="{{ issueID }}">
-<input type="hidden" name="assetID" id="assetID" value="{{ assetID }}">
-<label for="status" class="select_menu">Status
-<select name="status" id="status">
-<option selected value="base"></option>
-<option value="Open">Open</option>
-<option value="Risk Accepted">Risk Accepted</option>
-<option value="Closed">Closed</option>
-</select>
-</label>
+<label for="issueTitle">Issue Title</label>
+<input type="text" name="issueTitle" id="issueTitle" value="{{row[3]}}">
+<label for="riskRating">Risk Rating</label>
+<input type="text" name="riskRating" id="riskRating" value="{{row[7]}}">
+<label for="riskImpact">Risk Impact</label>
+<input type="text" name="riskImpact" id="riskImpact" value="{{row[8]}}">
+<label for="riskLikelihood">Risk Likelihood</label>
+<input type="text" name="riskLikelihood" id="riskLikelihood" value="{{row[9]}}">
+<label for="issueStatus">Issue Status</label>
+<input type="text" name="issueStatus" id="issueStatus" value="{{row[12]}}">
+<label for="location">Location</label>
+<input type="text" name="location" id="location" value="{{row[4]}}">
+<label for="description">Description</label>
+<textarea type="text" name="description" id="description">{{row[5]}}</textarea>
+<label for="remediation">Remediation</label>
+<textarea type="text" name="remediation" id="remediation">{{row[6]}}</textarea>
+<label for="issueDetails">Issue Details</label>
+<textarea type="text" name="issueDetails" id="issueDetails">{{row[13]}}</textarea>
+<label for="issueNotes">Issue Notes</label>
+<textarea type="text" name="issueNotes" id="issueNotes">{{row[14]}}</textarea>
+<label for="issueRADate">Risk Acceptance Date</label>
+<input type="text" name="issueRADate" id="issueRADate" value="{{row[15]}}">
+<label for="issueRAOwner">Risk Acceptance Owner</label>
+<input type="text" name="issueRAOwner" id="issueRAOwner" value="{{row[16]}}">
+<label for="issueRAExpiry">Risk Acceptance Expiry</label>
+<input type="text" name="issueRAExpiry" id="issueRAExpiry" value="{{row[17]}}">
+<label for="issueRANotes">Risk Acceptance Notes</label>
+<input type="text" name="issueRANotes" id="issueRANotes" value="{{row[18]}}">
+<input type="hidden" name="issueID" id="issueID" value="{{row[0]}}">
 <div class="button_frame">
-<button class="push_button_big blue" type="submit">Submit Data</button>
+<button class="push_button_big blue" type="submit">Update</button>
 </div>
 </form>
+{% endfor %}
 </div>
 {% endblock %}

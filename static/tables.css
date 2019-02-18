@@ -42,4 +42,9 @@
 	border: 30px solid transparent;
 }
 
+.tablea input[type=text], select, textarea[type=text], select_menu[type=text]{
+	font-size: 12px;
+	border: none;
+	padding: 3px;
+}
   

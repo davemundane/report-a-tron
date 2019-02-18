@@ -25,10 +25,10 @@
 		<td data-title="assetType">{{row[2]}}</td>
         <td data-title="assetOwner">{{row[3]}}</td>
         <td data-title="createdOn">{{row[4]}}</td>
-		<td data-title="engInfo"><a class="push_button darkblue fa-eye" href="{{ url_for('viewengagements', assetID=row[0], assetName=row[1]) }}"></a></td>
-		<td data-title="viewTest"><a class="push_button darkblue fa-eye" href="{{ url_for('viewtests', assetID=row[0], assetName=row[1]) }}"></a></td>
-		<td data-title="issueInfo"><a class="push_button darkblue fa-eye" href="{{ url_for('viewissues', assetID=row[0], assetName=row[1]) }}"></a></td>
-		<td data-title="newEng"><a class="push_button darkblue fa-plus" href="{{ url_for('engagements', assetName=row[1], assetID=row[0]) }}"></a></td>
+		<td data-title="engInfo"><a class="push_button darkblue" href="{{ url_for('viewengagements', assetID=row[0], assetName=row[1]) }}">%</a></td>
+		<td data-title="viewTest"><a class="push_button darkblue" href="{{ url_for('viewtests', assetID=row[0], assetName=row[1]) }}">%</a></td>
+		<td data-title="issueInfo"><a class="push_button darkblue" href="{{ url_for('viewissues', assetID=row[0], assetName=row[1]) }}">%</a></td>
+		<td data-title="newEng"><a class="push_button darkblue" href="{{ url_for('engagements', assetName=row[1], assetID=row[0]) }}">+</a></td>
       </tr>
 	  {% endfor %}
     </tbody>

@@ -20,15 +20,15 @@
     <tbody>
 	{% for row in data %}
       <tr>
-		<td scope="row" data-title="assetName">{{row[18]}}</td>
-        <td data-title="issueTitle">{{row[4]}}</td>
-        <td data-title="vulnLocation">{{row[5]}}</td>
-		<td data-title="description">{{row[6]}}</td>
-		<td data-title="remediation">{{row[7]}}</td>
-		<td data-title="riskRating">{{row[8]}}</td>
-		<td data-title="createdOn">{{row[11]}}</td>
+		<td scope="row" data-title="assetName">{{row[19]}}</td>
+        <td data-title="issueTitle">{{row[3]}}</td>
+        <td data-title="vulnLocation">{{row[4]}}</td>
+		<td data-title="description">{{row[5]}}</td>
+		<td data-title="remediation">{{row[6]}}</td>
+		<td data-title="riskRating">{{row[7]}}</td>
+		<td data-title="createdOn">{{row[10]}}</td>
 		<td data-title="status">{{row[12]}}</td>
-		<td data-title="updateIssue"><a class="push_button darkblue fa-update" href="{{ url_for('updateissue', issueID=row[0], assetID=row[19]) }}"></a></td>
+		<td data-title="updateIssue"><a class="push_button darkblue" href="{{ url_for('updateissue', issueID=row[0], assetID=row[20]) }}">#</a></td>
       </tr>
 	  {% endfor %}
     </tbody>

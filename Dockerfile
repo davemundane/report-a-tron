@@ -1,18 +1,23 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
+
+ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -y && \
     apt-get install -y python3 python3-dev python3-pip
 
-COPY ./requirements.txt /app/requirements.txt
-
-WORKDIR /app
-
-RUN pip3 install -r requirements.txt
+RUN apt-get install -y postgresql postgresql-contrib
 
 COPY . /app
 
-RUN python3 setupdb.py
+WORKDIR /app
 
-ENTRYPOINT [ "python3" ]
+EXPOSE 5432
 
-CMD [ "report-server.py" ]
+RUN groupadd webapp && \
+	usermod -a -G webapp postgres
+
+RUN chown -R postgres:webapp /app
+
+USER postgres
+
+ENTRYPOINT ["./startup.sh"]

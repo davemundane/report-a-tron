@@ -29,6 +29,13 @@ div.title_page {
     background-color: #56677f;
 }
 
+input[type=text] {
+	padding:6px;
+	margin-top:8px;
+	font-size:17px;
+	border:none;
+}
+
 .index_text {
 	width: 470px;
 	display: block;
@@ -66,13 +73,6 @@ div.title_page {
 	float: right;
 	margin-top: 20px;
 	
-}
-
-input[type=text] {
-	padding: 6px;
-	margin-top: 8px;
-	font-size: 17px;
-	border: none;
 }
 
 .search-container button {
