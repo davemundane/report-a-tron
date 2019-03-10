@@ -4,11 +4,19 @@ Web application for managing security assessment engagements, tests and issues.
 
 Its built in Flask, to run on python 3.6+
 
+![alt text](https://github.com/realfukinghigh/report-a-tron/blob/master/images/homepage.png "homepage")
+
 ## General 
+
+Create an asset
+
+![alt text](https://github.com/realfukinghigh/report-a-tron/blob/master/images/forms.png "forms")
 
 Database structure currently has assets as the primary table - intended to be an application, a server(s), or third party relationship or anything you wish to define as an asset.
 
 For any asset, you can create an engagement - something like a project for say, the deployment of the asset in a production environment
+
+![alt text](https://github.com/realfukinghigh/report-a-tron/blob/master/images/engdata.png "engagements")
 
 You can also create 'orphaned' engagements - a project to do something that might need security assessment, but doesnt have a defined asset.
 
@@ -22,9 +30,13 @@ The issue_links table holds relationships between issues and assets. This allows
 
 Reports can be produced for any test. Currently the asset reports are not finished, but any test can have a report produced in md and html format. 
 
+![alt text](https://github.com/realfukinghigh/report-a-tron/blob/master/images/testreport.png "report")
+
 Bug fix required here.. once a report is produced it appears to be cached so if you click to produce a report for a different test, the UI displays the cached version. In fact the report has been produced correctly and can be found in the /templates folder under the name convert_md.html
 
 Stats needs a bit of work, but you can all the stats you like from the database. 
+
+![alt text](https://github.com/realfukinghigh/report-a-tron/blob/master/images/stats.png "stats")
 
 Risk acceptance stuff needs to be added. Database is configured to handle it, but it needs building in the UI. 
 
