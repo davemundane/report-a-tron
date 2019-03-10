@@ -110,9 +110,13 @@ python report-server.py
 
 ### Future work
 Currently issue_links table stores links between the asset_id and the issue_id, mainly for reporting purposes. I need to add a web page allowing these to be updated as currently they need to be added directly in the database.
+
 Get docker working properly
+
 Configure auto backups in docker and via scripts
+
 A few changes required to configure database calls to return JSON only - currently most do, not all
+
 Some fixes required on dbstuff.py - it works but its ugly
 
 
