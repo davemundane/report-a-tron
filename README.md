@@ -1,25 +1,40 @@
 # Report-a-Tron
 
 Web application for managing security assessment engagements, tests and issues. 
+
 Its built in Flask, to run on python 3.6+
 
 ## General 
 
 Database structure currently has assets as the primary table - intended to be an application, a server(s), or third party relationship or anything you wish to define as an asset.
+
 For any asset, you can create an engagement - something like a project for say, the deployment of the asset in a production environment
+
 You can also create 'orphaned' engagements - a project to do something that might need security assessment, but doesnt have a defined asset.
+
 At a later date, you can add a link between an asset and an engagement, but inserting asset_id and eng_id into the links table. However if you create an engagement in the UI from an asset, the link will be added for you. 
 
 Engagements becomes the top table in a heirarchy. Tests created must have an associated engagement, tests table has a foreign key referencing the eng_id in engagements. 
+
 Similarly issues created must be associated with a test, and an engagement. Issues have a foreign key referencing test_id and eng_id. 
+
 The issue_links table holds relationships between issues and assets. This allows a single issue reported in a test to be linked to multiple assets, or an issue reported for a test that has multiple linked assets to be assigned to a single asset, rather than them all. This was done to cope with workflows where testing or assessment is carried out on multiple assets at the same time. 
 
 Reports can be produced for any test. Currently the asset reports are not finished, but any test can have a report produced in md and html format. 
+
 Bug fix required here.. once a report is produced it appears to be cached so if you click to produce a report for a different test, the UI displays the cached version. In fact the report has been produced correctly and can be found in the /templates folder under the name convert_md.html
 
 Stats needs a bit of work, but you can all the stats you like from the database. 
 
 Risk acceptance stuff needs to be added. Database is configured to handle it, but it needs building in the UI. 
+
+### Some considerations
+
+dates must be entered as yyyy-mm-dd
+
+Risk ratings must be 'Critical', 'High', 'Medium', 'Low' for the stats and other functions to work. Future dev will be to add constraints to the database to limit input to these values. 
+
+Asset types must be 'Application', 'Third Party', 'Other' for stats etc, though any value can be entered. 
 
 #### To run on Ubuntu: 
 
