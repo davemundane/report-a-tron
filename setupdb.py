@@ -98,8 +98,8 @@ def createTheTables():
 		issue_location TEXT, issue_description TEXT, remediation TEXT, risk_rating VARCHAR (10), \
 		risk_impact VARCHAR (10),  risk_likelihood VARCHAR (10), PRIMARY KEY (issue_id), \
 		created_on TIMESTAMP NOT NULL, issue_status VARCHAR (20) NOT NULL, issue_details TEXT, \
-		issue_notes TEXT, issue_due_date TIMESTAMP, ra_date_created TIMESTAMP, \
-		ra_date_expires TIMESTAMP, ra_owner TEXT, ra_notes TEXT)"""
+		issue_notes TEXT, issue_due_date TIMESTAMP, issue_ra_date TIMESTAMP, \
+		issue_ra_expiry TIMESTAMP, issue_ra_owner TEXT, issue_ra_note TEXT)"""
 		cur.execute(sqlVuln)
 		conn.commit()
 		cur.close()

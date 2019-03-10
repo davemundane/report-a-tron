@@ -329,7 +329,7 @@ def getAllIssueData():
 def updateSingleIssue(issueTitle,riskRating,riskImpact,riskLikelihood,location,issueStatus,description,remediation,issueDetails,issueNotes,issueRADate,issueRAOwner,issueRAExpiry,issueRANotes,issueID):
 
 	if issueRADate != "None": 
-		sqlIssueUpdate = "UPDATE issues SET issue_title = %s, risk_rating = %s, risk_impact = %s, risk_likelihood = %s, issue_location = %s, issue_status = %s, issue_description = %s, remediation = %s, issue_details = %s, issue_notes = %s, issue_ra_date = %s, issue_ra_owner = %s, issue_ra_expiry, issue_ra_notes = %s WHERE issue_id = %s"
+		sqlIssueUpdate = "UPDATE issues SET issue_title = %s, risk_rating = %s, risk_impact = %s, risk_likelihood = %s, issue_location = %s, issue_status = %s, issue_description = %s, remediation = %s, issue_details = %s, issue_notes = %s, issue_ra_date = %s, issue_ra_owner = %s, issue_ra_expiry, issue_ra_note = %s WHERE issue_id = %s"
 		try:
 			conn = psycopg2.connect("dbname=reportatron host=127.0.0.1 user=webapp password=reportatron")
 			cur = conn.cursor()
@@ -342,7 +342,7 @@ def updateSingleIssue(issueTitle,riskRating,riskImpact,riskLikelihood,location,i
 			raise
 	
 	else: 
-		sqlIssueUpdate = "UPDATE issues SET issue_title = %s, risk_rating = %s, risk_impact = %s, risk_likelihood = %s, issue_location = %s, issue_status = %s, issue_description = %s, remediation = %s, issue_details = %s, issue_notes = %s, issue_ra_owner = %s, issue_ra_notes = %s WHERE issue_id = %s"
+		sqlIssueUpdate = "UPDATE issues SET issue_title = %s, risk_rating = %s, risk_impact = %s, risk_likelihood = %s, issue_location = %s, issue_status = %s, issue_description = %s, remediation = %s, issue_details = %s, issue_notes = %s, issue_ra_owner = %s, issue_ra_note = %s WHERE issue_id = %s"
 		try:
 			conn = psycopg2.connect("dbname=reportatron host=127.0.0.1 user=webapp password=reportatron")
 			cur = conn.cursor()

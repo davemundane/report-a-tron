@@ -2,7 +2,7 @@
 
 #### Executive Summary
 
-some summary
+sum
 
 | **Description** | **Detail**|
 |---|---|
@@ -28,11 +28,6 @@ some summary
 | Remediation | rem
 
 #### Appendix
-
-1 - some issue
-```
-details
-```
 
 **Remediation Timelines**
 
