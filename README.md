@@ -103,6 +103,11 @@ Now create the required tables in the database reportatron, go back to the pytho
 ```
 python setupdb.py
 ```
+If you want to test it with some pretend data, run the test data creator
+```
+python createTestData.py
+```
+
 Everything should be ready to go, run the app: 
 ```
 python report-server.py
