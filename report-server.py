@@ -15,28 +15,28 @@ app = Flask(__name__)
 @app.route("/")
 def main():
 	return render_template('index.html')
-	
+
 @app.route("/newapp")
 def newapp():
 	return render_template('newapp.html')
-	
+
 @app.route("/error")
 def error():
 	return render_template('error.html')
-	
+
 @app.route("/complete")
 def complete():
 	return render_template('complete.html')
 
 @app.route("/gethtmlreport")
-def gethtmlreport(): 
+def gethtmlreport():
 	return render_template('convert_md.html')
-	
+
 @app.route("/thedata")
 def thedata():
 	data = dbstuff.getAllAssetTableData()
 	return render_template('thedata.html', data=data)
-	
+
 @app.route("/appdata", methods=['GET'])
 def appdata():
 	app_id = request.args.get('appID')
@@ -53,13 +53,13 @@ def createapp():
 	_assetType = request.form['assetType']
 	_assetOwner = request.form['assetOwner']
 	_assetNotes = request.form['assetNotes']
-	try: 
+	try:
 		timenow = datetime.datetime.now().isoformat().split(".")[0]
 		dbstuff.createNewAsset(_assetName, _assetType, _assetOwner, timenow, _assetNotes)
 		return redirect(url_for("thedata"))
-	except: 
+	except:
 		return redirect(url_for("error"))
-	
+
 @app.route("/engagements", methods=['GET'])
 def engagements():
 	assetName = request.args.get('assetName')
@@ -69,7 +69,7 @@ def engagements():
 @app.route("/orphanengagement", methods=['GET'])
 def orphanengagement():
         return render_template("orphanengagement.html")
-	
+
 @app.route("/newengagement", methods=['POST'])
 def newengagement():
 	_assetID = request.form['assetID']
@@ -79,11 +79,11 @@ def newengagement():
 	_receivedOn = request.form['receivedOn']
 	_actionTaken = request.form['actionTaken']
 	_engNotes = request.form['engNotes']
-	try: 
+	try:
 		timenow = datetime.datetime.now().isoformat().split(".")[0]
 		dbstuff.createNewEngagement(_assetID,_engformLocation,_mainContact,_riskRating,_receivedOn,_actionTaken,_engNotes)
 		return redirect(url_for("thedata"))
-	except: 
+	except:
 		return redirect(url_for("error"))
 
 @app.route("/neworphanengagement", methods=['POST'])
@@ -94,18 +94,18 @@ def neworphanengagement():
         _receivedOn = request.form['receivedOn']
         _actionTaken = request.form['actionTaken']
         _engNotes = request.form['engNotes']
-        try: 
+        try:
                 timenow = datetime.datetime.now().isoformat().split(".")[0]
                 dbstuff.createNewEngagement(None,_engformLocation,_mainContact,_riskRating,_receivedOn,_actionTaken,_engNotes)
                 return redirect(url_for("thedata"))
-        except: 
+        except:
                 return redirect(url_for("error"))
-				
+
 @app.route("/openengagements")
-def openengagements(): 
+def openengagements():
 	data = dbstuff.getOpenEngagementData()
 	return render_template('viewengagements.html', data=data)
-	
+
 @app.route("/viewengagements")
 def viewengagements():
 	assetID = request.args.get('assetID')
@@ -113,18 +113,18 @@ def viewengagements():
 	if assetID:
 		data = dbstuff.getEngagementsForAsset(assetID)
 		return render_template('viewengagements.html', data=data, assetName=assetName)
-	else: 
+	else:
 		data = dbstuff.getAllEngagementData()
 		return render_template('viewengagements.html', data=data)
-		
+
 @app.route("/updateEng")
 def updateEng():
 	_engID = request.args.get('engID')
 	data = dbstuff.getSingleEngagement(_engID)
 	return render_template('updateeng.html', data=data)
-	
+
 @app.route("/updateengagement", methods=['POST'])
-def updateengagement(): 
+def updateengagement():
 	_engID = request.form['engId']
 	_engformLocation = request.form['engformLocation']
 	_mainContact = request.form['mainContact']
@@ -133,18 +133,18 @@ def updateengagement():
 	_actionTaken = request.form['actionTaken']
 	_engNotes = request.form['engNotes']
 	_engStatus = request.form['engStatus']
-	try: 
+	try:
 		dbstuff.updateEngagement(_engID,_engformLocation,_mainContact,_riskRating,_receivedOn,_actionTaken,_engNotes,_engStatus)
 		return redirect(url_for("viewengagements"))
-	except: 
+	except:
 		return redirect(url_for("error"))
-		
+
 @app.route("/newtest", methods=['GET'])
 def newtest():
 	assetID = request.args.get('assetID')
 	engID = request.args.get('engID')
 	return render_template('newtest.html', assetID=assetID, engID=engID)
-	
+
 @app.route("/createtest", methods=['POST'])
 def createtest():
 	_assetID = request.form['assetID']
@@ -156,14 +156,14 @@ def createtest():
 	_mainContact = request.form['mainContact']
 	_testDate = request.form['testDate']
 	_testNotes = request.form['testNotes']
-	try: 
+	try:
 		timenow = datetime.datetime.now().isoformat().split(".")[0]
 		print(_assetID,_engID,_testType,_execSummary,_baseLocation,_limitations,_mainContact,timenow,_testDate,_testNotes)
 		dbstuff.createNewTest(_engID,_testType,_execSummary,_baseLocation,_limitations,_mainContact,timenow,_testDate,_testNotes)
 		return redirect(url_for("thedata"))
-	except: 
+	except:
 		return redirect(url_for("error"))
-	
+
 @app.route("/viewtests", methods=['GET'])
 def viewtests():
 	engID = request.args.get('engID')
@@ -175,10 +175,10 @@ def viewtests():
 	if assetID:
 		data = dbstuff.getTestsForAsset(assetID)
 		return render_template('viewtests.html', data=data, assetName=assetName)
-	else: 
+	else:
 		data = dbstuff.getAllTestData()
 		return render_template('viewtests.html', data=data)
-		
+
 @app.route("/viewissues", methods=['GET'])
 def viewissues():
 	engID = request.args.get('engID')
@@ -191,19 +191,19 @@ def viewissues():
 	if assetID:
 		data = dbstuff.getIssuesForAsset(assetID)
 		return render_template('viewissues.html', data=data, assetName=assetName)
-	else: 
+	else:
 		data = dbstuff.getAllIssueData()
 		return render_template('viewissues.html', data=data)
-		
+
 @app.route("/updateissue", methods=['GET'])
 def updateissue():
 	issueID = request.args.get('issueID')
-	try: 
+	try:
 		data = dbstuff.getSingleIssue(issueID)
 		return render_template("updateissue.html", data=data, issueID=issueID)
-	except: 
+	except:
 		return render_template("updateissue.html", issueID=issueID)
-		
+
 @app.route("/updatesingleissue", methods=['POST'])
 def updatesingleissue():
 	_issueID = request.form['issueID']
@@ -221,12 +221,12 @@ def updatesingleissue():
 	_issueRAOwner = request.form['issueRAOwner']
 	_issueRAExpiry = request.form['issueRAExpiry']
 	_issueRANotes = request.form['issueRANotes']
-	try: 
+	try:
 		dbstuff.updateSingleIssue(_issueTitle,_riskRating,_riskImpact,_riskLikelihood,_location,_issueStatus,_description,_remediation,_issueDetails,_issueNotes,_issueRADate,_issueRAOwner,_issueRAExpiry,_issueRANotes,_issueID)
 		return redirect(url_for("viewissues"))
-	except: 
+	except:
 		return redirect(url_for("error"))
-		
+
 @app.route("/createissue", methods=['POST'])
 def createissue():
 	_assetID = request.form['assetID']
@@ -243,7 +243,7 @@ def createissue():
 	_issueDetails = request.form['appendix']
 	_issueNotes = request.form['issueNotes']
 
-	try: 
+	try:
 		timenow = datetime.datetime.now().isoformat().split(".")[0]
 		dbstuff.createNewIssue(_engID,_testID,_issueTitle,_issueLocation,_issueDescription,_remediation,_riskRating,_riskImpact,_riskLikelihood,timenow,_status,_issueDetails,_issueNotes)
 	except Exception as error:
@@ -265,35 +265,38 @@ def testreport():
 	_assetName = request.args.get('assetName')
 	testData = dbstuff.getTestDataForReport(_testID)
 	issueData = dbstuff.getIssuesForTest(_testID)
-	reportWriter.writeTestReport(issueData, _assetName, testData)
-	return gethtmlreport()
+	if issueData:
+		reportWriter.writeTestReport(issueData, _assetName, testData)
+		return gethtmlreport()
+	else:
+		return redirect(url_for("error"))
 
 @app.route("/adhocreport", methods=['GET'])
 def adhocreport():
 	return render_template('adhocreport.html')
-	
+
 @app.route("/writeadhocreport", methods=['POST'])
 def writeadhocreport():
 	_assetName = request.form['assetName']
 	_issuesOpen = request.form.get('issuesOpen')
-	if _issuesOpen: 
+	if _issuesOpen:
 		_issuesOpen = "Open"
 	_issuesClosed = request.form.get('issuesClosed')
-	if _issuesClosed: 
+	if _issuesClosed:
 		_issuesClosed = "Closed"
 	_issuesRA = request.form.get('issuesRA')
-	if _issuesRA: 
+	if _issuesRA:
 		_issuesRA = "Risk Accepted"
 	print(_issuesOpen, _issuesClosed, _issuesRA)
 	_reportType = request.form['reportType']
-	
+
 	assetID = dbstuff.getAssetIdFromTitle(_assetName)[0]
 	if _reportType == "testReport":
 		pass
 	elif _reportType == "engagementReport":
 		pass
-	elif _reportType == "assetReport": 
-		try: 
+	elif _reportType == "assetReport":
+		try:
 			issueData = dbstuff.getIssuesForAsset(assetID)
 			print(issueData)
 			engCount = dbstuff.countEngagementsForAsset(assetID)
@@ -302,33 +305,32 @@ def writeadhocreport():
 			print(testData)
 			reportWriter.writeAssetReport(issueData, engCount, testData)
 			return gethtmlreport()
-		except: 
+		except:
 			return render_template('error.html')
-			
+
 @app.route("/stats")
 def stats():
 	return render_template('stats.html')
-	
+
 @app.route("/viewstats", methods=['POST'])
 def viewstats():
 
 	_startDate = request.form['startDate']
 	_endDate = request.form['endDate']
-	
+
 	getStats = stat.ReportatronStats()
 	data = getStats.getAllTheStats(_startDate, _endDate)
-	
+
 	return render_template('viewstats.html', data=data)
-			
+
 @app.route("/search")
-def search(): 
+def search():
 	_searchTerm = request.args.get('searchTerm')
 	data = dbstuff.getAssetIdFromSearch(_searchTerm)
 	return render_template('thedata.html', data=data)
-	
+
 if __name__ == "__main__":
 	#config = configparser.ConfigParser()
 	#config.read('default.conf')
 	#hostIP = config['DEFAULT']['host']
 	app.run()
-
