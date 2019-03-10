@@ -22,17 +22,17 @@
     <tbody>
 	{% for row in data %}
       <tr>
-		<td scope="row" data-title="assetName">{{row[8]}}</td>
-		<td data-title="endID">{{row[0]}}</td>
-        <td data-title="engformLocation">{{row[1]}}</td>
-        <td data-title="mainContact">{{row[2]}}</td>
-		<td data-title="riskRating">{{row[3]}}</td>
-		<td data-title="receivedOn">{{row[4]}}</td>
-		<td data-title="actionTaken">{{row[5]}}</td>
-		<td data-title="engStatus">{{row[7]}}</td>
-		<td data-title="updateEng"><a class="push_button darkblue" href="{{ url_for('updateEng', engID=row[0]) }}">#</a></td>
-		<td data-title="viewTest"><a class="push_button darkblue" href="{{ url_for('viewtests', assetID=row[9], engID=row[0], assetName=row[8]) }}">%</a></td>
-		<td data-title="newTest"><a class="push_button darkblue" href="{{ url_for('newtest', assetID=row[9], engID=row[0]) }}">+</a></td>
+		<td scope="row" data-title="assetName">{{row['asset_name']}}</td>
+		<td data-title="endID">{{row['eng_id']}}</td>
+        <td data-title="engformLocation">{{row['engform_location']}}</td>
+        <td data-title="mainContact">{{row['main_contact']}}</td>
+		<td data-title="riskRating">{{row['risk_rating']}}</td>
+		<td data-title="receivedOn">{{row['received_on']}}</td>
+		<td data-title="actionTaken">{{row['action_taken']}}</td>
+		<td data-title="engStatus">{{row['eng_status']}}</td>
+		<td data-title="updateEng"><a class="push_button fa-update darkblue" href="{{ url_for('updateEng', engID=row['eng_id']) }}"></a></td>
+		<td data-title="viewTest"><a class="push_button fa-eye darkblue" href="{{ url_for('viewtests', assetID=row['asset_id'], engID=row['eng_id'], assetName=row['asset_name']) }}"></a></td>
+		<td data-title="newTest"><a class="push_button fa-plus darkblue" href="{{ url_for('newtest', assetID=row['asset_id'], engID=row['eng_id']) }}"></a></td>
       </tr>
 	  {% endfor %}
     </tbody>

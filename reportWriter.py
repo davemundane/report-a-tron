@@ -10,10 +10,10 @@ def get_date():
 	
 def writeTestReport(data, assetName, testData): 
 
-	testType = testData[0][2]
-	execSummary = testData[0][3]
-	baseLocation = testData[0][4]
-	limitations = testData[0][5]
+	testType = testData[0]['test_type']
+	execSummary = testData[0]['exec_summary']
+	baseLocation = testData[0]['base_location']
+	limitations = testData[0]['limitations']
 	testDate = get_date()
 	
 	with open("./templates/report.md", "w") as md_file: 
@@ -36,16 +36,16 @@ def writeTestReport(data, assetName, testData):
 		md_file.write("|--|--|--|--|" + new_line)
 		
 		for issue in data: 
-			issueTitle = issue[3]
-			issueLocation = issue[4]
-			issueDescription = issue[5]
-			issueRemediation = issue[6]
-			issueRisk = issue[7]
-			issueImpact = issue[8]
-			issueLikelihood = issue[9]
-			issueStatus = issue[12]
-			issueDetails = issue[14]
-			issueID = issue[0]
+			issueTitle = issue['issue_title']
+			issueLocation = issue['issue_location']
+			issueDescription = issue['issue_description']
+			issueRemediation = issue['remediation']
+			issueRisk = issue['risk_rating']
+			issueImpact = issue['risk_impact']
+			issueLikelihood = issue['risk_likelihood']
+			issueStatus = issue['issue_status']
+			issueDetails = issue['issue_details']
+			issueID = issue['issue_id']
 		
 			md_file.write("| " + str(issueID) + " | " + issueTitle + " | " + issueRisk + " | " + issueStatus + " | " + new_line)
 
@@ -53,16 +53,16 @@ def writeTestReport(data, assetName, testData):
 		md_file.write("#### Technical Findings" + double_new_line)
 	
 		for issue in data: 
-			issueTitle = issue[3]
-			issueLocation = issue[4]
-			issueDescription = issue[5]
-			issueRemediation = issue[6]
-			issueRisk = issue[7]
-			issueImpact = issue[8]
-			issueLikelihood = issue[9]
-			issueStatus = issue[12]
-			issueDetails = issue[13]
-			issueID = issue[0]
+			issueTitle = issue['issue_title']
+			issueLocation = issue['issue_location']
+			issueDescription = issue['issue_description']
+			issueRemediation = issue['remediation']
+			issueRisk = issue['risk_rating']
+			issueImpact = issue['risk_impact']
+			issueLikelihood = issue['risk_likelihood']
+			issueStatus = issue['issue_status']
+			issueDetails = issue['issue_details']
+			issueID = issue['issue_id']
 				
 			md_file.write("| **Ref** | " + str(issueID) + " - " + issueTitle + new_line)
 			md_file.write("|---|---|" + new_line)
@@ -75,10 +75,10 @@ def writeTestReport(data, assetName, testData):
 		md_file.write("#### Appendix" + double_new_line)
 		
 		for issue in data: 
-			if issue[13]:
-				md_file.write(str(issue[0]) + " - " + issue[3] + new_line) 
+			if issue['issue_details']:
+				md_file.write(str(issue['issue_id']) + " - " + issue['issue_title'] + new_line) 
 				md_file.write("```" + new_line)
-				md_file.write(issue[13] + new_line)
+				md_file.write(issue['issue_details'] + new_line)
 				md_file.write("```" + double_new_line)
 			else:
 				continue

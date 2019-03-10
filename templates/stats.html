@@ -1,0 +1,17 @@
+{% extends "template.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="static/forms.css">
+<link rel="stylesheet" type="text/css" href="static/buttons.css">
+<p class="form_caption">Get Some Stats!</p>
+<div class="forms">
+<form class="entry_form" action="/viewstats" method="post">
+<label for="startDate">Start Date</label>
+<input type="text" name="startDate" id="startDate" autofocus>
+<label for="endDate">End Date</label>
+<input type="text" name="endDate" id="endDate" autofocus>
+<div class="button_frame">
+<button class="push_button_big blue" type="submit">Submit Data</button>
+</div>
+</form>
+</div>
+{% endblock %}

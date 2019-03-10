@@ -4,38 +4,38 @@
 <link rel="stylesheet" type="text/css" href="static/tables.css">
 <link rel="stylesheet" type="text/css" href="static/forms.css">
 {% for row in data %}
-<p class="form_caption">Update Issue - ID: {{row[0]}}</p>
+<p class="form_caption">Update Issue - ID: {{row['issue_id']}}</p>
 <div class="forms">
 <form class="entry_form" action="/updatesingleissue" method="post">
 <label for="issueTitle">Issue Title</label>
-<input type="text" name="issueTitle" id="issueTitle" value="{{row[3]}}">
+<input type="text" name="issueTitle" id="issueTitle" value="{{row['issue_title']}}">
 <label for="riskRating">Risk Rating</label>
-<input type="text" name="riskRating" id="riskRating" value="{{row[7]}}">
+<input type="text" name="riskRating" id="riskRating" value="{{row['risk_rating']}}">
 <label for="riskImpact">Risk Impact</label>
-<input type="text" name="riskImpact" id="riskImpact" value="{{row[8]}}">
+<input type="text" name="riskImpact" id="riskImpact" value="{{row['risk_impact']}}">
 <label for="riskLikelihood">Risk Likelihood</label>
-<input type="text" name="riskLikelihood" id="riskLikelihood" value="{{row[9]}}">
+<input type="text" name="riskLikelihood" id="riskLikelihood" value="{{row['risk_likelihood']}}">
 <label for="issueStatus">Issue Status</label>
-<input type="text" name="issueStatus" id="issueStatus" value="{{row[12]}}">
+<input type="text" name="issueStatus" id="issueStatus" value="{{row['issue_status']}}">
 <label for="location">Location</label>
-<input type="text" name="location" id="location" value="{{row[4]}}">
+<input type="text" name="location" id="location" value="{{row['issue_location']}}">
 <label for="description">Description</label>
-<textarea type="text" name="description" id="description">{{row[5]}}</textarea>
+<textarea type="text" name="description" id="description">{{row['issue_description']}}</textarea>
 <label for="remediation">Remediation</label>
-<textarea type="text" name="remediation" id="remediation">{{row[6]}}</textarea>
+<textarea type="text" name="remediation" id="remediation">{{row['remediation']}}</textarea>
 <label for="issueDetails">Issue Details</label>
-<textarea type="text" name="issueDetails" id="issueDetails">{{row[13]}}</textarea>
+<textarea type="text" name="issueDetails" id="issueDetails">{{row['issue_details']}}</textarea>
 <label for="issueNotes">Issue Notes</label>
-<textarea type="text" name="issueNotes" id="issueNotes">{{row[14]}}</textarea>
+<textarea type="text" name="issueNotes" id="issueNotes">{{row['issue_notes']}}</textarea>
 <label for="issueRADate">Risk Acceptance Date</label>
-<input type="text" name="issueRADate" id="issueRADate" value="{{row[15]}}">
+<input type="text" name="issueRADate" id="issueRADate" value="{{row['issue_ra_date]}}">
 <label for="issueRAOwner">Risk Acceptance Owner</label>
-<input type="text" name="issueRAOwner" id="issueRAOwner" value="{{row[16]}}">
+<input type="text" name="issueRAOwner" id="issueRAOwner" value="{{row['issue_ra_owner']}}">
 <label for="issueRAExpiry">Risk Acceptance Expiry</label>
-<input type="text" name="issueRAExpiry" id="issueRAExpiry" value="{{row[17]}}">
+<input type="text" name="issueRAExpiry" id="issueRAExpiry" value="{{row['issue_ra_expiry']}}">
 <label for="issueRANotes">Risk Acceptance Notes</label>
-<input type="text" name="issueRANotes" id="issueRANotes" value="{{row[18]}}">
-<input type="hidden" name="issueID" id="issueID" value="{{row[0]}}">
+<input type="text" name="issueRANotes" id="issueRANotes" value="{{row['issue_ra_note']}}">
+<input type="hidden" name="issueID" id="issueID" value="{{row['issue_id']}}">
 <div class="button_frame">
 <button class="push_button_big blue" type="submit">Update</button>
 </div>

@@ -20,15 +20,15 @@
     <tbody>
 	{% for row in data %}
       <tr>
-        <td scope="row" data-title="assetID">{{row[0]}}</td>
-        <td data-title="assetName">{{row[1]}}</td>
-		<td data-title="assetType">{{row[2]}}</td>
-        <td data-title="assetOwner">{{row[3]}}</td>
-        <td data-title="createdOn">{{row[4]}}</td>
-		<td data-title="engInfo"><a class="push_button darkblue" href="{{ url_for('viewengagements', assetID=row[0], assetName=row[1]) }}">%</a></td>
-		<td data-title="viewTest"><a class="push_button darkblue" href="{{ url_for('viewtests', assetID=row[0], assetName=row[1]) }}">%</a></td>
-		<td data-title="issueInfo"><a class="push_button darkblue" href="{{ url_for('viewissues', assetID=row[0], assetName=row[1]) }}">%</a></td>
-		<td data-title="newEng"><a class="push_button darkblue" href="{{ url_for('engagements', assetName=row[1], assetID=row[0]) }}">+</a></td>
+        <td scope="row" data-title="assetID">{{row['asset_id']}}</td>
+        <td data-title="assetName">{{row['asset_name']}}</td>
+		<td data-title="assetType">{{row['asset_type']}}</td>
+        <td data-title="assetOwner">{{row['asset_owner']}}</td>
+        <td data-title="createdOn">{{row['created_on']}}</td>
+		<td data-title="engInfo"><a class="push_button fa-eye darkblue" href="{{ url_for('viewengagements', assetID=row['asset_id'], assetName=row['asset_name']) }}"></a></td>
+		<td data-title="viewTest"><a class="push_button fa-eye darkblue" href="{{ url_for('viewtests', assetID=row['asset_id'], assetName=row['asset_name']) }}"></a></td>
+		<td data-title="issueInfo"><a class="push_button fa-eye darkblue" href="{{ url_for('viewissues', assetID=row['asset_id'], assetName=row['asset_name']) }}"></a></td>
+		<td data-title="newEng"><a class="push_button fa-plus darkblue" href="{{ url_for('engagements', assetName=row['asset_name'], assetID=row['asset_id']) }}"></a></td>
       </tr>
 	  {% endfor %}
     </tbody>

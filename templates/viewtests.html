@@ -20,15 +20,15 @@
     <tbody>
 	{% for row in data %}
       <tr>
-		<td scope="row" data-title="assetName">{{row[10]}}</td>
-        <td data-title="testType">{{row[2]}}</td>
-        <td data-title="baseLocation">{{row[4]}}</td>
-		<td data-title="mainContact">{{row[6]}}</td>
-		<td data-title="createdOn">{{row[7]}}</td>
-		<td data-title="testDate">{{row[8]}}</td>
-		<td data-title="viewissues"><a class="push_button darkblue" href="{{ url_for('viewissues', assetID=row[11], engID=row[1], testID=row[0], assetName=row[10]) }}">%</a></td>
-		<td data-title="createnewissue"><a class="push_button darkblue" href="{{ url_for('createnewissue', assetID=row[11], engID=row[1], testID=row[0], assetName=row[10]) }}">+</a></td>
-		<td data-title="testreport"><a class="push_button darkblue" href="{{ url_for('testreport', assetID=row[11], engID=row[1], testID=row[0], assetName=row[10]) }}">$</a></td>
+		<td scope="row" data-title="assetName">{{row['asset_name']}}</td>
+        <td data-title="testType">{{row['test_type']}}</td>
+        <td data-title="baseLocation">{{row['base_location']}}</td>
+		<td data-title="mainContact">{{row['main_contact']}}</td>
+		<td data-title="createdOn">{{row['created_on']}}</td>
+		<td data-title="testDate">{{row['test_date']}}</td>
+		<td data-title="viewissues"><a class="push_button fa-eye darkblue" href="{{ url_for('viewissues', assetID=row['asset_id'], engID=row['eng_id'], testID=row['test_id'], assetName=row['asset_name']) }}"></a></td>
+		<td data-title="createnewissue"><a class="push_button fa-plus darkblue" href="{{ url_for('createnewissue', assetID=row['asset_id'], engID=row['eng_id'], testID=row['test_id'], assetName=row['asset_name']) }}"></a></td>
+		<td data-title="testreport"><a class="push_button fa-file darkblue" href="{{ url_for('testreport', assetID=row['asset_id'], engID=row['eng_id'], testID=row['test_id'], assetName=row['asset_name']) }}"></a></td>
       </tr>
 	  {% endfor %}
     </tbody>

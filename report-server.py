@@ -7,16 +7,11 @@ import markdown
 import configparser
 import dbstuff
 import reportWriter
+import theStatMachine as stat
 
-finding_dict = {}
-ticker = 0
-UPLOAD_FOLDER = "."
-_asvName = ""
-style = '<style>body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; font-size: 16px; line-height: 1.5; word-wrap: break-word; padding: 45px; word-wrap: break-word; background-color: #fff; border: 1px solid #ddd; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;} table { border-collapse: collapse; } th {    background-color: #003A6F;    color: white;}table, th, td {    border: 1px solid black;}table {    width: 90%; margin-bottom: 20px; margin-left: 5%; margin-right: 5%; } th {    height: 50px;}th, td {    text-align: center-left;}th, td {    padding: 5px;    text-align: left;}tr:nth-child(even) {background-color: #f2f2f2;}code {  display: inline-block;  line-height: 20px  margin: 10px;  padding: 10px;  } code { display: inline; max-width: auto; padding: 0; margin: 0; overflow: visible; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0;} pre { padding: 16px; overflow: auto; font-size: 85%; line-height: 1.45; background-color: #f6f8fa; border-radius: 3px; word-wrap: normal }</style>'
 
 # root handler to serve the index page
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 @app.route("/")
 def main():
 	return render_template('index.html')
@@ -48,12 +43,10 @@ def appdata():
 	data = dbstuff.getSingleAssetTestData(asset_id)
 	return render_template('appdata.html', data=data)
 
-# handler to show the report page containing the main form
 @app.route("/report")
 def report():
 	return render_template('report.html')
 
-# handler for an endpoint to receive the data from index, asvname etc
 @app.route("/createapp", methods=['POST'])
 def createapp():
 	_assetName = request.form['assetName']
@@ -77,7 +70,6 @@ def engagements():
 def orphanengagement():
         return render_template("orphanengagement.html")
 	
-# handler for an endpoint to receive the data from newengagements etc
 @app.route("/newengagement", methods=['POST'])
 def newengagement():
 	_assetID = request.form['assetID']
@@ -172,7 +164,6 @@ def createtest():
 	except: 
 		return redirect(url_for("error"))
 	
-	
 @app.route("/viewtests", methods=['GET'])
 def viewtests():
 	engID = request.args.get('engID')
@@ -187,7 +178,6 @@ def viewtests():
 	else: 
 		data = dbstuff.getAllTestData()
 		return render_template('viewtests.html', data=data)
-		
 		
 @app.route("/viewissues", methods=['GET'])
 def viewissues():
@@ -314,6 +304,21 @@ def writeadhocreport():
 			return gethtmlreport()
 		except: 
 			return render_template('error.html')
+			
+@app.route("/stats")
+def stats():
+	return render_template('stats.html')
+	
+@app.route("/viewstats", methods=['POST'])
+def viewstats():
+
+	_startDate = request.form['startDate']
+	_endDate = request.form['endDate']
+	
+	getStats = stat.ReportatronStats()
+	data = getStats.getAllTheStats(_startDate, _endDate)
+	
+	return render_template('viewstats.html', data=data)
 			
 @app.route("/search")
 def search(): 

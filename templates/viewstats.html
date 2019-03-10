@@ -1,0 +1,65 @@
+{% extends "template.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="static/forms.css">
+<link rel="stylesheet" type="text/css" href="static/buttons.css">
+<link rel="stylesheet" type="text/css" href="static/tables.css">
+<table class="tablea">
+    <caption>Report-a-Tron stats</caption>
+    <thead>
+      <tr>
+		<th scope="col">Type</th>
+		<th scope="col">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td scope="row">Engagements Received</td>
+		<td>{{data['EngagementsMonth']}}</td>
+	</tr>
+	<tr>
+		<td>Total Open Engagements</td>
+		<td>{{data['OpenEngagements']}}</td>
+	</tr>	
+	<tr>
+		<td>Total Open Issues</td>
+		<td>{{data['TotalIssues']}}</td>
+	</tr>	
+	<tr>
+		<td>*** Critical</td>
+		<td>{{data['issues']['Critical']}}</td>
+	</tr>
+	<tr>
+		<td>*** High</td>
+		<td>{{data['issues']['High']}}</td>
+	</tr>
+	<tr>
+		<td>*** Medium</td>
+		<td>{{data['issues']['Medium']}}</td>
+	</tr>
+		<tr>
+		<td>*** Low</td>
+		<td>{{data['issues']['Low']}}</td>
+	</tr>
+	<tr>
+		<td>Internet Facing Apps - Open Issues</td>
+		<td>{{data['InternetIssues']}}</td>
+	</tr>	
+	<tr>
+		<td>Third Party Engagements Received</td>
+		<td>{{data['ThirdPartyEngagements']}}</td>
+	</tr>	
+	<tr>
+		<td>Third Party Open Issues</td>
+		<td>{{data['ThirdPartyIssues']}}</td>
+	</tr>	
+	<tr>
+		<td>Other Engagements Received</td>
+		<td>{{data['OtherEngagements']}}</td>
+	</tr>	
+	<tr>
+		<td>Other Engagements Open Issues</td>
+		<td>{{data['OtherEngagementIssues']}}</td>
+	</tr>
+    </tbody>
+  </table>
+{% endblock %}
