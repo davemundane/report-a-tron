@@ -10,19 +10,19 @@ def createTheDatabase():
 
 	try:
 		cur.execute("CREATE DATABASE reportatron;")
-		cur.close()
+		#cur.close()
 		print("reportatron database created")
 	except (Exception, psycopg2.DatabaseError) as error:
 		print(error)
 		cur.close()
 
-	try: 
+	try:
 		cur.execute("CREATE USER webapp WITH ENCRYPTED PASSWORD 'reportatron';")
 		cur.execute("GRANT ALL PRIVILEGES ON DATABASE reportatron TO webapp;")
 		cur.close()
-	except (Exception, psycopg2.DatabaseError) as error: 
+	except (Exception, psycopg2.DatabaseError) as error:
 		print(error)
-		cur.close() 
+		cur.close()
 
 def createTheTables():
 
@@ -68,7 +68,7 @@ def createTheTables():
 		conn.commit()
 		cur.close()
 		print("link table created")
-	except (Exception, psycopg2.DatabaseError) as error: 
+	except (Exception, psycopg2.DatabaseError) as error:
 		print(error)
 		cur.close()
 
@@ -108,7 +108,7 @@ def createTheTables():
 		print(error)
 		cur.close()
 
-	try: 
+	try:
 		#conn = psycopg2.connect("dbname=postgres user=webapp password=reportatron")
 		cur = conn.cursor()
 		sqlLink = """CREATE TABLE issue_links (link_asset_id int REFERENCES assets (asset_id) \
@@ -121,7 +121,7 @@ def createTheTables():
 		print("issue_links table created")
 	except (Exception, psycopg2.DatabaseError) as error:
 		print(error)
-		cur.close() 
+		cur.close()
 
-#createTheDatabase()
+createTheDatabase()
 createTheTables()
